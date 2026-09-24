@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Technology & Potential in PNG - Public Policy Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        png: {
+                            red: '#D21034',
+                            black: '#000000',
+                            gold: '#FFCE00',
+                            emerald: '#059669',
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        .bg-grid-light {
+            background-size: 30px 30px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Global Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-red-600 to-slate-900 flex items-center justify-center text-white shadow-lg shadow-red-500/20 font-bold text-xl">
+                    <i class="fa-solid font-mono">PNG</i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-slate-900 dark:text-white tracking-tight text-lg block leading-none">PNG Ledger Policy</span>
+                    <span class="text-xs text-amber-600 dark:text-amber-400 font-medium tracking-wide uppercase">Blockchain Public Sector Report</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#overview" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Overview</a>
+                <a href="#identity" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Digital Identity</a>
+                <a href="#domains" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Public Services</a>
+                <a href="#simulator" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <i class="fa-solid fa-network-wired text-xs"></i> Node Simulator
+                </a>
+                <a href="#constraints" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Constraints</a>
+                <a href="#references" class="hover:text-red-600 dark:hover:text-amber-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">References</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-3">
+                <!-- Dark Mode Toggle -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none" title="Toggle Light/Dark Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="#simulator" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all hover:scale-105">
+                    <i class="fa-solid fa-play"></i> Live Demo
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-2 text-sm font-medium">
+            <a href="#overview" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Overview</a>
+            <a href="#identity" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Digital Identity Anchor</a>
+            <a href="#domains" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Public Service Domains</a>
+            <a href="#simulator" class="block py-2 px-3 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-semibold">Node & Offline Simulator</a>
+            <a href="#constraints" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Technical Feasibility</a>
+            <a href="#references" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">APA References</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="overview" class="relative py-16 lg:py-24 overflow-hidden bg-slate-900 text-white bg-grid-pattern border-b border-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/80 to-slate-900 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        National Digital Policy Research Report
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Blockchain Technology & Its Potential in <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-red-500 to-amber-200">Papua New Guinea</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                        A comprehensive policy evaluation of permissioned blockchain architecture to resolve backend Civil Registry bottlenecks, unlock SevisPass digital identity, and transform PNG's public services.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#identity" class="px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow-lg shadow-red-600/30 transition-all hover:-translate-y-0.5">
+                            Explore Framework <i class="fa-solid fa-arrow-down ml-2"></i>
+                        </a>
+                        <a href="#simulator" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm transition-all hover:-translate-y-0.5">
+                            Launch Offline Node Simulation <i class="fa-solid fa-bolt text-amber-400 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Summary Dashboard -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-800/80 backdrop-blur-xl border border-slate-700/80 rounded-2xl p-6 shadow-2xl space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                            <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-amber-400"></i> PNG Public Administrative Metrics
+                            </h3>
+                            <span class="text-xs bg-slate-700 text-amber-300 font-mono px-2 py-0.5 rounded">2024-2026 Data</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                                <div class="text-2xl font-black text-amber-400 font-mono">1.3M / 3.8M</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Physical NID Cards Issued vs Registered Citizens (Tilto, 2025)</div>
+                            </div>
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                                <div class="text-2xl font-black text-red-400 font-mono">14%</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Grid Electricity Access Nationwide (&lt;4% Rural) (World Bank, 2024)</div>
+                            </div>
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                                <div class="text-2xl font-black text-emerald-400 font-mono">80-85%</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Unbanked Rural Population Lacking KYC Identity (BPNG, 2024)</div>
+                            </div>
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/50">
+                                <div class="text-2xl font-black text-cyan-400 font-mono">97%</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Customary Land Mass Requiring ILG Clan Security (DLPP, 2020)</div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 text-xs text-amber-300 flex items-start gap-2">
+                            <i class="fa-solid fa-circle-info text-amber-400 mt-0.5"></i>
+                            <span><strong>Policy Solution:</strong> Permissioned blockchain nodes with local offline caching eliminate central Port Moresby bottlenecks.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 flex-grow">
+
+        <!-- Executive Introduction Section -->
+        <section class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/80 text-red-600 dark:text-red-400 flex items-center justify-center font-extrabold text-lg">1</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Introduction & Administrative Context</h2>
+                </div>
+                
+                <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+                    <p>
+                        Papua New Guinea continues to rely heavily on legacy paper-based recordkeeping and centralized database systems, where administrative processing is concentrated in Port Moresby (<span class="text-red-600 dark:text-amber-400 font-medium">Department of Information and Communications Technology, 2022</span>). This structural centralization creates severe administrative delays for provincial offices across the country.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 not-prose">
+                        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                            <div class="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-base mb-2">
+                                <i class="fa-solid fa-lock-open text-red-500"></i> Permissionless Networks
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">
+                                Open public networks (e.g. Bitcoin, Ethereum) allowing unrestricted participation and anonymous node validation. Unsuitable for sovereign public administration due to privacy and speed limitations.
+                            </p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+                            <div class="flex items-center gap-2 text-emerald-900 dark:text-emerald-300 font-bold text-base mb-2">
+                                <i class="fa-solid fa-user-shield text-emerald-600 dark:text-emerald-400"></i> Permissioned Networks (Proposed)
+                            </div>
+                            <p class="text-xs text-emerald-800 dark:text-emerald-400">
+                                Restricted architecture where validation rights are limited to authorized state entities (provincial capitals, police HQ, banks). Ensures data privacy, speed, and strict national sovereignty.
+                            </p>
+                        </div>
+                    </div>
+                    <p>
+                        For PNG public administration, adopting a <strong>permissioned blockchain architecture</strong> is essential, as it restricts validation rights to trusted state entities, ensuring strict data privacy and national sovereignty while eliminating central bottlenecks.
+                    </p>
+                    <p class="bg-slate-100 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-amber-500 text-sm font-medium text-slate-800 dark:text-slate-200">
+                        <strong>Report Focus:</strong> Establishing a permissioned blockchain framework for digital identity as the foundational anchor, followed by dependent service domains including healthcare, criminal records, financial inclusion, and customary land registries.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Digital Identity Section -->
+        <section id="identity" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm transition-colors space-y-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center font-extrabold text-lg">2</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Digital Identity as the Foundational Anchor</h2>
+                </div>
+
+                <!-- Subsection 2.1 -->
+                <div class="space-y-4 border-l-2 border-amber-500 pl-4 sm:pl-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">
+                        2.1 SevisPass Verification Bottlenecks and Centralized NID Backlogs
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        To modernize public service access, the Department of Information and Communications Technology (DICT) introduced <strong>SevisPass</strong> and <strong>SevisWallet</strong> as front-end digital identity solutions. However, these platforms remain a work in progress and struggle to achieve widespread adoption because a digital credential application is fundamentally dependent on verified underlying records.
+                    </p>
+                    <div class="bg-red-50 dark:bg-red-950/40 p-4 rounded-2xl border border-red-200 dark:border-red-900/50 flex flex-col sm:flex-row items-center gap-4">
+                        <div class="text-3xl text-red-600 dark:text-red-400 font-black font-mono">1.3M / 3.8M</div>
+                        <p class="text-xs text-red-900 dark:text-red-300 leading-normal">
+                            The Papua New Guinea Civil and Identity Registry (PNGCIR) relies on a centralized model in Port Moresby, creating a massive backlog where only <strong>1.3 million physical NID cards have been issued out of 3.8 million registered citizens</strong> (<span class="font-semibold">Tilto, 2025</span>). Without a complete, verified data pool, front-end initiatives stall.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Subsection 2.2 -->
+                <div class="space-y-4 border-l-2 border-emerald-500 pl-4 sm:pl-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">
+                        2.2 Permissioned Provincial Nodes: Re-engineering the Identity Anchor
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        To eliminate this central bottleneck, PNG can re-engineer identity verification using a permissioned blockchain architecture. Under this model, provincial registration offices operate as <strong>authorized validation nodes</strong> on a shared network.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 text-center space-y-2 border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-id-card text-2xl text-amber-500"></i>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-200 uppercase">1. Local Capture</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Biometric & demographic data registered at provincial registration nodes.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 text-center space-y-2 border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-fingerprint text-2xl text-emerald-500"></i>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-200 uppercase">2. Decentralized ID (DID)</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Unique cryptographic DID generated & written directly to the ledger.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 text-center space-y-2 border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-mobile-screen text-2xl text-cyan-500"></i>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-200 uppercase">3. SevisPass Sync</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Instant verification pool unlocked for SevisPass & SevisWallet apps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Dependent Service Verification (Interactive Tabs) -->
+        <section id="domains" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm transition-colors space-y-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-extrabold text-lg">3</span>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Dependent Service Verification Domains</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Select a key public administration sector below to examine the specific blockchain transformation:</p>
+                    </div>
+                </div>
+
+                <!-- Domain Navigation Tabs -->
+                <div class="flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+                    <button onclick="switchTab('health')" id="tab-health" class="domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-emerald-600 text-white shadow-md">
+                        <i class="fa-solid fa-notes-medical mr-2"></i> 3.1 Health Records (EHR)
+                    </button>
+                    <button onclick="switchTab('crime')" id="tab-crime" class="domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-shield-halved mr-2"></i> 3.2 Police Clearance
+                    </button>
+                    <button onclick="switchTab('banking')" id="tab-banking" class="domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-building-columns mr-2"></i> 3.3 Banking & KYC
+                    </button>
+                    <button onclick="switchTab('land')" id="tab-land" class="domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i> 3.4 Customary Land & ILG
+                    </button>
+                </div>
+
+                <!-- Tab 3.1 Content: Healthcare -->
+                <div id="content-health" class="domain-content space-y-4 pt-2">
+                    <div class="flex items-center gap-3 text-emerald-600 dark:text-emerald-400 font-bold text-lg">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <h3>Cross-Provincial Healthcare Records (EHR)</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        As reported by <em>The National</em> (2023), many public healthcare facilities in Papua New Guinea rely on fragmented paper records that are highly prone to loss, damage, and administrative inconsistencies. Apart from loss and damage of records, patients are being re-diagnosed and sometimes misdiagnosed when their clinic books are unavailable, wasting money and clinical supplies.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">Blockchain Mechanism:</span>
+                        <p class="text-xs sm:text-sm text-emerald-900 dark:text-emerald-300">
+                            By implementing Encrypted Electronic Health Records (EHR) on a shared ledger unlocked through a patient's <strong>SevisPass ID</strong>, authorized health workers nationwide can access medical histories instantly. This seamless verification eliminates duplicate diagnostic testing and reduces medical supply waste across provincial lines.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tab 3.2 Content: Crime -->
+                <div id="content-crime" class="domain-content hidden space-y-4 pt-2">
+                    <div class="flex items-center gap-3 text-red-600 dark:text-red-400 font-bold text-lg">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <h3>Law Enforcement and Criminal Records (RPNGC)</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        In Papua New Guinea, criminal records are currently isolated within local and provincial stations, causing background checks—such as Police Clearance Certificates—to take weeks or months to process (<span class="font-medium">Royal Papua New Guinea Constabulary, 2024</span>).
+                    </p>
+                    <div class="p-4 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-800 dark:text-red-300">Blockchain Mechanism:</span>
+                        <p class="text-xs sm:text-sm text-red-900 dark:text-red-300">
+                            Implementing a blockchain-based registry permanently links criminal records to a citizen’s verified <strong>SevisPass ID</strong>. This ensures background queries are accurate nationwide, preventing individuals from clearing their record simply by moving across provincial borders and dramatically streamlining police operations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tab 3.3 Content: Banking -->
+                <div id="content-banking" class="domain-content hidden space-y-4 pt-2">
+                    <div class="flex items-center gap-3 text-amber-600 dark:text-amber-400 font-bold text-lg">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                        <h3>Banking & Financial Inclusion (KYC)</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Bank of Papua New Guinea (2024) highlights that approximately <strong>80% to 85% of the population remains unbanked</strong>. Most rural citizens are unbanked because commercial banks require strict “Know Your Customer” (KYC) requirements that citizens cannot satisfy without physical ID cards. Smallholder farmers are forced to rely on cash, leaving them vulnerable to theft and unable to access micro-loans or savings accounts.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300">Blockchain Mechanism:</span>
+                        <p class="text-xs sm:text-sm text-amber-900 dark:text-amber-300">
+                            Linking a citizen’s verified cryptographic ID—such as SevisPass—directly to financial services allows banks to verify identity instantly without requiring physical paperwork or travel to main branches. Consequently, this integration enables mobile wallets, secure crop payments, and direct access to formal banking for rural communities.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tab 3.4 Content: Customary Land -->
+                <div id="content-land" class="domain-content hidden space-y-4 pt-2">
+                    <div class="flex items-center gap-3 text-cyan-600 dark:text-cyan-400 font-bold text-lg">
+                        <i class="fa-solid fa-tree"></i>
+                        <h3>Customary Land Records & ILG Registration</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        Approximately 97% of PNG’s land mass is held under customary tenure, governed by clans through Incorporated Land Group (ILG) registrations (<span class="font-medium">Department of Lands and Physical Planning, 2020</span>). However, paper-based registration systems at the national level are prone to document tampering, fraudulent land transactions, and endless boundary litigation.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-800 dark:text-cyan-300">Blockchain Mechanism:</span>
+                        <p class="text-xs sm:text-sm text-cyan-900 dark:text-cyan-300">
+                            Before an ILG title or customary lease can be recorded, cryptographic identities of executive clan members are verified via SevisPass. Once verified, boundary agreements are immutably logged on the ledger, requiring <strong>multi-signature consensus</strong> from verified clan representatives before any transfer or lease can occur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Provincial Node & Offline Caching Simulator -->
+        <section id="simulator" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl space-y-8 bg-grid-pattern relative overflow-hidden">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold mb-2">
+                            <i class="fa-solid fa-microchip"></i> Interactive Technical Demonstration
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-white">Provincial Node & Offline Caching Simulator</h2>
+                        <p class="text-xs text-slate-400 mt-1">Simulate PNG's 14% grid electricity & network constraints in real-time.</p>
+                    </div>
+                    
+                    <!-- Network Status Toggle Control -->
+                    <div class="flex items-center bg-slate-800 p-1.5 rounded-2xl border border-slate-700">
+                        <span class="text-xs font-bold text-slate-300 px-3">Network Link:</span>
+                        <button id="toggleNetworkBtn" onclick="toggleNetworkState()" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-500 text-slate-950 shadow-md flex items-center gap-2">
+                            <span id="networkDot" class="w-2.5 h-2.5 rounded-full bg-slate-950 animate-ping"></span>
+                            <span id="networkText">ONLINE (CONNECTED)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simulation Interactive Interface -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Form Input: Provincial Registration Capture -->
+                    <div class="lg:col-span-5 bg-slate-800/80 p-5 rounded-2xl border border-slate-700 space-y-4">
+                        <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square"></i> Issue Citizen Record Node
+                        </h3>
+
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <label class="block text-slate-400 font-semibold mb-1">Provincial Validation Node</label>
+                                <select id="simNodeSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:ring-2 focus:ring-amber-500 outline-none">
+                                    <option value="Eastern Highlands Node (Goroka)">Eastern Highlands Node (Goroka)</option>
+                                    <option value="Western Province Node (Daru)">Western Province Node (Daru)</option>
+                                    <option value="Manus Node (Lorengau)">Manus Node (Lorengau)</option>
+                                    <option value="East New Britain Node (Kokopo)">East New Britain Node (Kokopo)</option>
+                                    <option value="NCD Central Node (Port Moresby)">NCD Central Node (Port Moresby)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-slate-400 font-semibold mb-1">Citizen Full Name</label>
+                                <input type="text" id="simName" value="Kila Wama" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:ring-2 focus:ring-amber-500 outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-slate-400 font-semibold mb-1">Record / Service Type</label>
+                                <select id="simType" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:ring-2 focus:ring-amber-500 outline-none">
+                                    <option value="Digital ID (NID / SevisPass DID)">Digital ID (NID / SevisPass DID)</option>
+                                    <option value="Healthcare Clinic Visit (EHR)">Healthcare Clinic Visit (EHR)</option>
+                                    <option value="Police Clearance Verification">Police Clearance Verification</option>
+                                    <option value="Customary Land ILG Boundary Agreement">Customary Land ILG Boundary Agreement</option>
+                                </select>
+                            </div>
+
+                            <button onclick="submitSimTransaction()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-file-signature"></i> Sign & Submit Record
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Node Storage & Synchronization Monitor -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex items-center justify-between bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-xs">
+                            <span class="text-slate-400 font-medium">Local Cache Queue: <strong id="cacheCount" class="text-amber-400">0 pending</strong></span>
+                            <span class="text-slate-400 font-medium">National Ledger: <strong id="ledgerCount" class="text-emerald-400">0 finalized</strong></span>
+                        </div>
+
+                        <!-- Terminal Output Window -->
+                        <div class="bg-slate-950 rounded-2xl border border-slate-800 p-4 font-mono text-xs h-64 overflow-y-auto space-y-2" id="simTerminal">
+                            <div class="text-slate-500">// System Initialized. Permissioned Provincial Nodes Active.</div>
+                            <div class="text-slate-500">// Network Status: ONLINE. Awaiting provincial transaction signatures...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Implementation Constraints and Technical Feasibility -->
+        <section id="constraints" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm transition-colors space-y-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/80 text-red-700 dark:text-red-400 flex items-center justify-center font-extrabold text-lg">4</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Implementation Constraints & Technical Feasibility</h2>
+                </div>
+
+                <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+                    <p>
+                        According to the <span class="font-semibold text-red-600 dark:text-amber-400">World Bank (2024)</span>, only <strong>14% of the population in PNG has access to grid electricity</strong>, with less than 4% in rural areas where frequent blackouts are experienced.
+                    </p>
+
+                    <div class="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 space-y-3 my-6">
+                        <h4 class="font-bold text-amber-900 dark:text-amber-300 text-sm uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> Infrastructure Workaround: Offline Caching Architecture
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                            PNG is still a developing country, so a national digital ledger cannot rely on continuous 24/7 internet connectivity or uninterrupted electricity. The practical workaround is a <strong>permissioned network paired with local offline caching</strong>.
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                            Remote health posts, police stations, banks, and district land offices can process and cryptographically sign records locally during power or network outages. Once power or network connectivity is restored, the local node automatically synchronizes its transactions back to the national ledger without losing any data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Conclusion -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-red-950 text-white rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-extrabold text-lg">5</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Conclusion & Strategic Policy Roadmap</h2>
+                </div>
+
+                <p class="text-slate-200 leading-relaxed text-sm sm:text-base">
+                    Digital identity serves as the essential foundation for modernizing Papua New Guinea’s public administration. Once current SevisPass and NID verification backlogs are resolved, dependent public and socioeconomic domains—such as healthcare, law enforcement, formal financial services, and customary land registries—can seamlessly integrate into the digital framework.
+                </p>
+
+                <p class="text-slate-200 leading-relaxed text-sm sm:text-base">
+                    Implementing a permissioned blockchain with local offline caching addresses severe electricity and network constraints, drastically reducing provincial administrative delays. Ultimately, decentralization provides the structural architecture PNG needs to transition away from legacy paper archives and centralized database bottlenecks toward efficient, real-time public service delivery.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 6: APA References List -->
+        <section id="references" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm transition-colors space-y-6">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-red-600 dark:text-amber-400"></i> APA References List
+                        </h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Official scholarly & institutional citations supporting this report.</p>
+                    </div>
+                    <button onclick="copyReferencesText()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-copy"></i> Copy Citations
+                    </button>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans pl-6 -indent-6">
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        Bank of Papua New Guinea. (2024). <em>National Financial Inclusion Strategy 2023-2027</em>. Port Moresby: Bank of Papua New Guinea.
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        Department of Information and Communications Technology. (2022). <em>Digital Government Act 2022</em>. Port Moresby: Government of Papua New Guinea.
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        Department of Lands and Physical Planning. (2020). <em>Customary Land Registration Guidelines and ILG Operational Framework</em>. Port Moresby: Government of Papua New Guinea.
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        Royal Papua New Guinea Constabulary. (2024). <em>Police Clearance Services and National Criminal Records Office</em>. https://rpngc.gov.pg/advice-services/epolice-clearance/
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        The National. (2023, December 5). Healthcare delivery still a challenge. <em>The National</em>. https://www.thenational.com.pg/healthcare-delivery-still-a-challenge/
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        Tilto, J. (2025, October 10). Civil registry says 3.8 million citizens registered so far. <em>The National</em>. https://www.thenational.com.pg/civil-registry-says-3-8-million-citizens-registered-so-far/
+                    </p>
+                    <p class="hover:bg-slate-50 dark:hover:bg-slate-800/50 p-2 rounded-lg transition-colors">
+                        World Bank. (2024). <em>Papua New Guinea Energy and Infrastructure Assessment</em>. Washington, D.C.: World Bank Group.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Page Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 text-center text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>© 2026 DWU MCS1 Semester 2 Communication Skills Major Project.</p>
+            <p class="text-slate-500">Patriarch Anton #260444, Lecturer: Ms Yuangu • Permissioned Ledger Policy Architecture</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast Element -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white border border-slate-700 px-5 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 translate-y-10 pointer-events-none flex items-center gap-3 z-50 text-xs sm:text-sm">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMsg">Notification message</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Domain Tab Switching Logic
+        function switchTab(tabKey) {
+            // Reset all tab buttons
+            document.querySelectorAll('.domain-tab').forEach(btn => {
+                btn.className = 'domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
+            });
+
+            // Hide all content blocks
+            document.querySelectorAll('.domain-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Highlight active button & reveal content
+            const activeBtn = document.getElementById(`tab-${tabKey}`);
+            const activeContent = document.getElementById(`content-${tabKey}`);
+
+            activeContent.classList.remove('hidden');
+
+            const colorMap = {
+                health: 'bg-emerald-600 text-white shadow-md',
+                crime: 'bg-red-600 text-white shadow-md',
+                banking: 'bg-amber-600 text-white shadow-md',
+                land: 'bg-cyan-600 text-white shadow-md'
+            };
+
+            activeBtn.className = `domain-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all ${colorMap[tabKey]}`;
+        }
+
+        // Simulator State
+        let isOnline = true;
+        let cachedRecords = [];
+        let finalizedCount = 0;
+
+        function toggleNetworkState() {
+            isOnline = !isOnline;
+            const btn = document.getElementById('toggleNetworkBtn');
+            const dot = document.getElementById('networkDot');
+            const text = document.getElementById('networkText');
+
+            if (isOnline) {
+                btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-500 text-slate-950 shadow-md flex items-center gap-2';
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-950 animate-ping';
+                text.innerText = 'ONLINE (CONNECTED)';
+                logTerminal('[NETWORK RESTORED] Connectivity online. Re-synchronizing cached nodes...', 'text-emerald-400');
+                
+                // Trigger Auto-Sync if records are cached
+                if (cachedRecords.length > 0) {
+                    syncCachedRecords();
+                }
+            } else {
+                btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition-all bg-red-600 text-white shadow-md flex items-center gap-2';
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-white';
+                text.innerText = 'OFFLINE (BLACKOUT)';
+                logTerminal('[POWER/NETWORK LOSS] Grid power/satellite down. Switching to local provincial node cache.', 'text-amber-400');
+            }
+        }
+
+        function submitSimTransaction() {
+            const node = document.getElementById('simNodeSelect').value;
+            const name = document.getElementById('simName').value.trim() || 'Anonymous Citizen';
+            const type = document.getElementById('simType').value;
+            
+            const txId = '0x' + Math.random().toString(16).substr(2, 8).toUpperCase();
+            const did = 'did:png:' + Math.random().toString(36).substr(2, 6);
+
+            const record = { txId, did, node, name, type, timestamp: new Date().toLocaleTimeString() };
+
+            if (isOnline) {
+                finalizedCount++;
+                document.getElementById('ledgerCount').innerText = `${finalizedCount} finalized`;
+                logTerminal(`[SYNC COMPLETE] ${txId} | Node: ${node} | Citizen: ${name} (${did}) -> Finalized to National Ledger`, 'text-cyan-300');
+                showToast('Record verified & saved to national blockchain ledger!');
+            } else {
+                cachedRecords.push(record);
+                document.getElementById('cacheCount').innerText = `${cachedRecords.length} pending`;
+                logTerminal(`[OFFLINE CACHED] ${txId} | Signed locally at ${node} | Saved to local storage buffer.`, 'text-amber-300');
+                showToast('Network offline. Saved to local provincial cache node!', 'amber');
+            }
+        }
+
+        function syncCachedRecords() {
+            setTimeout(() => {
+                let synced = cachedRecords.length;
+                finalizedCount += synced;
+                cachedRecords = [];
+                document.getElementById('cacheCount').innerText = '0 pending';
+                document.getElementById('ledgerCount').innerText = `${finalizedCount} finalized`;
+                logTerminal(`[AUTO-SYNC SUCCESS] Batch synchronized ${synced} pending transactions to national permissioned ledger.`, 'text-emerald-300 font-bold');
+                showToast(`Auto-synced ${synced} pending records to national ledger!`);
+            }, 800);
+        }
+
+        function logTerminal(msg, colorClass = 'text-slate-300') {
+            const term = document.getElementById('simTerminal');
+            const line = document.createElement('div');
+            line.className = colorClass;
+            line.innerText = `> ${msg}`;
+            term.appendChild(line);
+            term.scrollTop = term.scrollHeight;
+        }
+
+        // Copy References Helper
+        function copyReferencesText() {
+            const referencesText = `Bank of Papua New Guinea. (2024). National Financial Inclusion Strategy 2023-2027. Port Moresby: Bank of Papua New Guinea.
+Department of Information and Communications Technology. (2022). Digital Government Act 2022. Port Moresby: Government of Papua New Guinea.
+Department of Lands and Physical Planning. (2020). Customary Land Registration Guidelines and ILG Operational Framework. Port Moresby: Government of Papua New Guinea.
+Royal Papua New Guinea Constabulary. (2024). Police Clearance Services and National Criminal Records Office. https://rpngc.gov.pg/advice-services/epolice-clearance/
+The National. (2023, December 5). Healthcare delivery still a challenge. https://www.thenational.com.pg/healthcare-delivery-still-a-challenge/
+Tilto, J. (2025, October 10). Civil registry says 3.8 million citizens registered so far. The National. https://www.thenational.com.pg/civil-registry-says-3-8-million-citizens-registered-so-far/
+World Bank. (2024). Papua New Guinea Energy and Infrastructure Assessment. Washington, D.C.: World Bank Group.`;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = referencesText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showToast('APA Reference List copied to clipboard!');
+        }
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+            if (type === 'amber') {
+                toastIcon.className = 'fa-solid fa-triangle-exclamation text-amber-400';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            }
+
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
